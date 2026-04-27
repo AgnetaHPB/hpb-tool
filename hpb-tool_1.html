@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Potential Blueprint — Agneta Kripaitė</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f0e0d;
+  --bg2: #1a1815;
+  --bg3: #231f1c;
+  --border: rgba(212,186,140,0.15);
+  --border2: rgba(212,186,140,0.3);
+  --gold: #d4ba8c;
+  --gold-light: #e8d4a8;
+  --gold-dim: rgba(212,186,140,0.5);
+  --text: #f0e8da;
+  --text2: #a89880;
+  --text3: #6b5e50;
+  --accent: #c9a96e;
+  --purple: #9b8ec4;
+  --teal: #6db8a8;
+  --coral: #c4826d;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* Grain texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.container { max-width: 900px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+/* Header */
+header {
+  padding: 48px 0 32px;
+  border-bottom: 0.5px solid var(--border);
+  margin-bottom: 40px;
+}
+
+.header-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+
+.logo-area h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--gold-light);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.logo-area .subtitle {
+  font-size: 12px;
+  color: var(--text3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.orb {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: 0.5px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  background: radial-gradient(circle at 35% 35%, rgba(212,186,140,0.12), transparent);
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 2px;
+  background: var(--bg2);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 4px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--text2);
+  transition: all 0.2s;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tab:hover { color: var(--text); }
+.tab.active { background: var(--bg3); color: var(--gold); border: 0.5px solid var(--border2); }
+
+/* Section */
+.section { display: none; }
+.section.active { display: block; }
+
+/* Cards */
+.card {
+  background: var(--bg2);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 16px;
+}
+
+/* Form elements */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 12px; color: var(--text2); }
+
+.field input,
+.field textarea,
+.field select {
+  background: var(--bg3);
+  border: 0.5px solid var(--border2);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  width: 100%;
+  transition: border-color 0.2s;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--gold-dim);
+}
+
+.field input::placeholder,
+.field textarea::placeholder { color: var(--text3); }
+.field textarea { resize: vertical; min-height: 110px; }
+.field select { appearance: none; cursor: pointer; }
+
+/* Button */
+.btn-main {
+  width: 100%;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 0.5px solid var(--gold-dim);
+  background: transparent;
+  color: var(--gold);
+  transition: all 0.2s;
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+}
+
+.btn-main:hover { background: rgba(212,186,140,0.08); border-color: var(--gold); }
+.btn-main:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.btn-sm {
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  border: 0.5px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  transition: all 0.2s;
+}
+.btn-sm:hover { color: var(--text); border-color: var(--gold-dim); }
+
+/* Result box */
+.result-box {
+  background: var(--bg3);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text);
+  max-height: 600px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+}
+
+.result-box::-webkit-scrollbar { width: 4px; }
+.result-box::-webkit-scrollbar-track { background: var(--bg3); }
+.result-box::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+/* Loading */
+.loading-msg {
+  text-align: center;
+  color: var(--text2);
+  font-size: 14px;
+  padding: 40px;
+  font-style: italic;
+}
+
+/* Step indicator */
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 24px;
+  background: var(--bg2);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+}
+
+.step-item { display: flex; align-items: center; gap: 8px; flex: 1; }
+.step-dot {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 0.5px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text3);
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+.step-dot.done { background: rgba(109,184,168,0.2); border-color: var(--teal); color: var(--teal); }
+.step-dot.current { background: rgba(212,186,140,0.1); border-color: var(--gold); color: var(--gold); }
+.step-label { font-size: 11px; color: var(--text3); }
+.step-line { flex: 1; height: 0.5px; background: var(--border); margin: 0 8px; }
+
+/* Profile cards */
+.profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-bottom: 12px; }
+.profile-card {
+  background: var(--bg3);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+}
+.profile-card .p-label { font-size: 10px; color: var(--text3); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.08em; }
+.profile-card .p-value { font-size: 13px; color: var(--gold); font-weight: 500; }
+
+/* Tags */
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  margin: 2px 3px 2px 0;
+}
+.tag-purple { background: rgba(155,142,196,0.15); color: var(--purple); border: 0.5px solid rgba(155,142,196,0.3); }
+.tag-teal { background: rgba(109,184,168,0.15); color: var(--teal); border: 0.5px solid rgba(109,184,168,0.3); }
+.tag-gold { background: rgba(212,186,140,0.1); color: var(--gold); border: 0.5px solid var(--border2); }
+
+/* Section buttons */
+.sec-btns { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.sec-btn {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  border: 0.5px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+.sec-btn:hover { color: var(--text); border-color: var(--gold-dim); }
+.sec-btn.on { background: rgba(212,186,140,0.1); color: var(--gold); border-color: var(--gold-dim); }
+
+/* Quality check */
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 0.5px solid var(--border);
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+.check-item.pass { border-color: rgba(109,184,168,0.4); background: rgba(109,184,168,0.06); }
+.check-item.fail { border-color: rgba(196,130,109,0.4); background: rgba(196,130,109,0.06); }
+.check-item.warn { border-color: rgba(212,186,140,0.3); background: rgba(212,186,140,0.05); }
+
+.c-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.c-dot.pass { background: var(--teal); }
+.c-dot.fail { background: var(--coral); }
+.c-dot.warn { background: var(--gold); }
+
+.c-label { font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.c-detail { font-size: 12px; color: var(--text2); }
+
+.score-big { font-size: 36px; font-weight: 300; font-family: 'Cormorant Garamond', serif; color: var(--gold-light); }
+.prog { height: 4px; background: var(--bg3); border-radius: 2px; flex: 1; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 2px; transition: width 0.6s; }
+
+/* Info box */
+.info-box {
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 10px;
+  border: 0.5px solid;
+}
+.info-gold { background: rgba(212,186,140,0.06); border-color: rgba(212,186,140,0.25); color: var(--gold); }
+.info-teal { background: rgba(109,184,168,0.06); border-color: rgba(109,184,168,0.25); color: var(--teal); }
+.info-coral { background: rgba(196,130,109,0.06); border-color: rgba(196,130,109,0.25); color: var(--coral); }
+
+/* Divider */
+.divider { height: 0.5px; background: var(--border); margin: 20px 0; }
+
+/* Result header */
+.result-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+
+/* Footer */
+footer {
+  border-top: 0.5px solid var(--border);
+  padding: 24px 0;
+  margin-top: 48px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text3);
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Hidden */
+.hidden { display: none !important; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+@media (max-width: 600px) {
+  .grid2, .grid3 { grid-template-columns: 1fr; }
+  .tabs { flex-direction: column; }
+  .tab { min-width: auto; }
+  header { padding: 32px 0 24px; }
+  .logo-area h1 { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+  <div class="header-inner">
+    <div class="logo-area">
+      <h1>Human Potential Blueprint</h1>
+      <div class="subtitle">Agneta Kripaitė · Analizės sistema · v2.0</div>
+    </div>
+    <div class="orb">🔮</div>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('gen',this)">Generuoti analizę</button>
+  <button class="tab" onclick="showTab('regen',this)">Regeneruoti skyrių</button>
+  <button class="tab" onclick="showTab('check',this)">Tikrinti kokybę</button>
+  <button class="tab" onclick="showTab('partner',this)">Partnerio profilis</button>
+</div>
+
+<!-- GENERATE -->
+<div id="gen" class="section active">
+
+  <div class="card">
+    <div class="card-title">Kliento pagrindiniai duomenys</div>
+    <div class="grid2" style="margin-bottom:12px">
+      <div class="field"><label>Vardas ir pavardė</label><input id="g-name" placeholder="Pvz. Lina Petraitienė"/></div>
+      <div class="field"><label>Gimimo data</label><input id="g-dob" placeholder="1990-05-14"/></div>
+      <div class="field"><label>Gimimo laikas</label><input id="g-time" placeholder="14:30"/></div>
+      <div class="field"><label>Gimimo vieta</label><input id="g-place" placeholder="Vilnius, Lietuva"/></div>
+    </div>
+    <div class="grid3" style="margin-bottom:12px">
+      <div class="field"><label>Šeimyninė padėtis</label>
+        <select id="g-status"><option value="">Nenurodyta</option><option>Vieniša</option><option>Santykiuose</option><option>Vedusi/Ištekėjusi</option><option>Išsiskyrusi</option><option>Našlė</option></select>
+      </div>
+      <div class="field"><label>Vaikai</label>
+        <select id="g-kids"><option value="">Nenurodyta</option><option>Nėra</option><option>1</option><option>2</option><option>3+</option></select>
+      </div>
+      <div class="field"><label>Profesinė sritis</label>
+        <select id="g-field"><option value="">Nenurodyta</option><option>Finansai / verslas</option><option>Kūryba / menas</option><option>Medicina / sveikata</option><option>Ugdymas / mokymas</option><option>Technologijos</option><option>Kita</option></select>
+      </div>
+    </div>
+    <div class="field" style="margin-bottom:12px">
+      <label>Kliento pagrindinis fokusas / klausimas</label>
+      <input id="g-focus" placeholder="Pvz. karjera, santykiai, finansai — ką labiausiai nori suprasti?"/>
+    </div>
+    <div class="field">
+      <label>Chartos duomenys iš astro.com (visas Data Sheet tekstas)</label>
+      <textarea id="g-chart" placeholder="Įklijuok chartos duomenis — planetas, namus, aspektus, asteroidinius kūnus..."></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Papildoma informacija</div>
+    <div class="grid2">
+      <div class="field"><label>MBTI tipas (jei žinomas)</label><input id="g-mbti" placeholder="Pvz. INFJ"/></div>
+      <div class="field"><label>Human Design tipas</label>
+        <select id="g-hd"><option value="">Nežinomas</option><option>Manifestor</option><option>Generator</option><option>Manifesting Generator</option><option>Projector</option><option>Reflector</option></select>
+      </div>
+      <div class="field"><label>Prisirišimo stilius</label>
+        <select id="g-attach"><option value="">Nežinomas</option><option>Saugus (Secure)</option><option>Nerimo (Anxious)</option><option>Vengiantis (Avoidant)</option><option>Dezorganizuotas</option></select>
+      </div>
+      <div class="field"><label>Gyvenimo kelio skaičius</label><input id="g-num" placeholder="Pvz. 7 (paliks tuščią — apskaičiuos automatiškai)"/></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Analizės nustatymai</div>
+    <div class="grid2">
+      <div class="field"><label>Gylis</label>
+        <select id="g-depth"><option value="standard">Standartinis (2000–2500 žodžių)</option><option value="deep">Gilus (2500–3500 žodžių)</option><option value="premium">Premium (3500+ žodžių)</option></select>
+      </div>
+      <div class="field"><label>Tonas</label>
+        <select id="g-tone"><option value="warm">Šiltas ir palaikantis</option><option value="direct">Tiesioginis ir praktiškas</option><option value="spiritual">Dvasinis ir poetiškas</option></select>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-main" id="genBtn" onclick="runGenerate()">Generuoti pilną analizę →</button>
+
+  <div id="gen-steps" class="hidden" style="margin-top:20px">
+    <div class="steps">
+      <div class="step-item"><div class="step-dot" id="s1">1</div><span class="step-label">Profilis</span></div>
+      <div class="step-line"></div>
+      <div class="step-item"><div class="step-dot" id="s2">2</div><span class="step-label">Psichologija</span></div>
+      <div class="step-line"></div>
+      <div class="step-item"><div class="step-dot" id="s3">3</div><span class="step-label">Analizė</span></div>
+      <div class="step-line"></div>
+      <div class="step-item"><div class="step-dot" id="s4">4</div><span class="step-label">Kokybė</span></div>
+    </div>
+  </div>
+
+  <div id="gen-profile" class="hidden" style="margin-top:16px">
+    <div class="card">
+      <div class="card-title">Kliento psichologinis profilis</div>
+      <div class="profile-grid" id="profile-cards"></div>
+      <div id="profile-tags"></div>
+    </div>
+  </div>
+
+  <div id="gen-result" class="hidden" style="margin-top:16px">
+    <div class="card">
+      <div class="result-header">
+        <div class="card-title" style="margin-bottom:0">Sugeneruota analizė</div>
+        <div style="display:flex;gap:8px">
+          <button class="btn-sm" onclick="copyText('gen-box')">Kopijuoti</button>
+          <button class="btn-sm" onclick="saveToRegen()">→ Regeneruoti</button>
+        </div>
+      </div>
+      <div class="result-box" id="gen-box"></div>
+    </div>
+  </div>
+
+  <div id="gen-check-wrap" class="hidden" style="margin-top:16px">
+    <div class="card">
+      <div class="card-title">Kokybės patikrinimas</div>
+      <div id="gen-check-inner"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- REGEN -->
+<div id="regen" class="section">
+  <div class="card">
+    <div class="card-title">Regeneruoti atskirą skyrių</div>
+    <div class="field" style="margin-bottom:12px">
+      <label>Originali analizė arba chartos duomenys</label>
+      <textarea id="r-original" placeholder="Įklijuok jau sugeneruotą analizę arba kliento chartos duomenis..."></textarea>
+    </div>
+    <div class="grid2" style="margin-bottom:12px">
+      <div class="field"><label>Kliento vardas</label><input id="r-name" placeholder="Pvz. Lina"/></div>
+      <div class="field"><label>Papildomos instrukcijos</label><input id="r-extra" placeholder="Pvz. labiau poetiškai, daugiau chartos faktų..."/></div>
+    </div>
+    <div style="margin-bottom:8px;font-size:12px;color:var(--text2)">Pasirink skyrių:</div>
+    <div class="sec-btns" id="sec-btns">
+      <button class="sec-btn" onclick="selectSec(this,'ĮVADAS – Kosminis portretas')">🌟 Įvadas</button>
+      <button class="sec-btn" onclick="selectSec(this,'PSICHOLOGINIS PROFILIS – MBTI, elementai, prisirišimo stilius')">🧬 Psich. profilis</button>
+      <button class="sec-btn" onclick="selectSec(this,'I. ASMENYBĖ IR TAPATYBĖ')">🧠 Asmenybė</button>
+      <button class="sec-btn" onclick="selectSec(this,'II. FINANSAI IR KARJERA – su pinigų archetipo analize')">💰 Finansai</button>
+      <button class="sec-btn" onclick="selectSec(this,'III. SANTYKIAI IR MEILĖ')">❤️ Santykiai</button>
+      <button class="sec-btn" onclick="selectSec(this,'TOBULO PARTNERIO PROFILIS')">💑 Partneris</button>
+      <button class="sec-btn" onclick="selectSec(this,'IV. GYVENIMO MISIJA IR POTENCIALAS')">🎯 Misija</button>
+      <button class="sec-btn" onclick="selectSec(this,'V. AKASHIC / DVASINĖ DIMENSIJA')">🔮 Akashic</button>
+      <button class="sec-btn" onclick="selectSec(this,'VI. TIMING – GYVENIMO CIKLAI')">🌙 Timing</button>
+      <button class="sec-btn" onclick="selectSec(this,'VII. PAPILDOMI ĮŽVALGOS')">💎 Papildomi</button>
+      <button class="sec-btn" onclick="selectSec(this,'IŠVADA – Tavo žinia sau')">✨ Išvada</button>
+    </div>
+  </div>
+  <button class="btn-main" id="regenBtn" onclick="runRegen()">Regeneruoti skyrių →</button>
+  <div id="regen-result" class="hidden" style="margin-top:16px">
+    <div class="card">
+      <div class="result-header">
+        <div class="card-title" style="margin-bottom:0">Regeneruotas skyrius</div>
+        <button class="btn-sm" onclick="copyText('regen-box')">Kopijuoti</button>
+      </div>
+      <div class="result-box" id="regen-box"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHECK -->
+<div id="check" class="section">
+  <div class="card">
+    <div class="card-title">Tikrinti jau sugeneruotą analizę</div>
+    <div class="field" style="margin-bottom:12px">
+      <label>Analizės tekstas</label>
+      <textarea id="c-text" style="min-height:180px" placeholder="Įklijuok visą sugeneruotą analizę..."></textarea>
+    </div>
+    <div class="grid2">
+      <div class="field"><label>Kliento vardas</label><input id="c-name" placeholder="Pvz. Lina"/></div>
+      <div class="field"><label>Minimalus žodžių skaičius</label>
+        <select id="c-target"><option value="2000">Standartinis (2000+)</option><option value="2500">Gilus (2500+)</option><option value="3500">Premium (3500+)</option></select>
+      </div>
+    </div>
+  </div>
+  <button class="btn-main" onclick="runCheck()">Tikrinti kokybę →</button>
+  <div id="check-result" class="hidden" style="margin-top:16px">
+    <div class="card">
+      <div class="card-title">Kokybės ataskaita</div>
+      <div id="check-inner"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PARTNER -->
+<div id="partner" class="section">
+  <div class="card">
+    <div class="card-title">Tobulo partnerio profilio generatorius</div>
+    <div class="grid2" style="margin-bottom:12px">
+      <div class="field"><label>Kliento vardas</label><input id="p-name" placeholder="Pvz. Lina"/></div>
+      <div class="field"><label>Ieško</label>
+        <select id="p-gender"><option value="">Nenurodyta</option><option>Moteris, ieško vyro</option><option>Moteris, ieško moters</option><option>Vyras, ieško moters</option><option>Vyras, ieško vyro</option><option>Nesvarbu</option></select>
+      </div>
+    </div>
+    <div class="field" style="margin-bottom:12px">
+      <label>Chartos duomenys</label>
+      <textarea id="p-chart" placeholder="Įklijuok chartos duomenis iš astro.com..."></textarea>
+    </div>
+    <div class="field">
+      <label>Santykių istorija / kontekstas (neprivaloma)</label>
+      <input id="p-context" placeholder="Pvz. dažnai pritraukia emociškai neprieinamus žmones..."/>
+    </div>
+  </div>
+  <button class="btn-main" id="partnerBtn" onclick="runPartner()">Generuoti partnerio profilį →</button>
+  <div id="partner-result" class="hidden" style="margin-top:16px">
+    <div class="card">
+      <div class="result-header">
+        <div class="card-title" style="margin-bottom:0">Tobulo partnerio profilis</div>
+        <button class="btn-sm" onclick="copyText('partner-box')">Kopijuoti</button>
+      </div>
+      <div class="result-box" id="partner-box"></div>
+    </div>
+  </div>
+</div>
+
+<footer>Human Potential Blueprint © Agneta Kripaitė · Sistema skirta tik profesionaliam naudojimui</footer>
+
+</div><!-- /container -->
+
+<script>
+const API = 'https://api.anthropic.com/v1/messages';
+let selSec = '';
+
+function showTab(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+}
+
+function selectSec(el, name) {
+  document.querySelectorAll('.sec-btn').forEach(b => b.classList.remove('on'));
+  el.classList.add('on');
+  selSec = name;
+}
+
+function calcNum(dob) {
+  if (!dob) return null;
+  const d = dob.replace(/\D/g,'');
+  let s = d.split('').reduce((a,b)=>a+parseInt(b),0);
+  while(s>9&&s!==11&&s!==22&&s!==33) s=String(s).split('').reduce((a,b)=>a+parseInt(b),0);
+  return s;
+}
+
+function calcPY(dob) {
+  if (!dob) return null;
+  const p = dob.split(/[-\/\.]/);
+  if (p.length < 2) return null;
+  const m = parseInt(p[1]), dy = parseInt(p[2]||p[0]);
+  let s = m + dy + 2026;
+  while(s>9&&s!==11&&s!==22) s=String(s).split('').reduce((a,b)=>a+parseInt(b),0);
+  return s;
+}
+
+function detectEl(t) {
+  const f=(t.match(/Avinas|Liūtas|Šaulys/gi)||[]).length;
+  const e=(t.match(/Jautis|Mergelė|Ožiaragis/gi)||[]).length;
+  const a=(t.match(/Dvyniai|Svarstyklės|Vandenis/gi)||[]).length;
+  const w=(t.match(/Vėžys|Skorpionas|Žuvys/gi)||[]).length;
+  const mx=Math.max(f,e,a,w);
+  if(!mx) return null;
+  if(mx===f) return 'Ugnis';
+  if(mx===e) return 'Žemė';
+  if(mx===a) return 'Oras';
+  return 'Vanduo';
+}
+
+function setStep(n) {
+  for(let i=1;i<=4;i++){
+    const d=document.getElementById('s'+i);
+    if(!d) continue;
+    d.className='step-dot'+(i<n?' done':i===n?' current':'');
+    d.textContent=i<n?'✓':i;
+  }
+}
+
+function buildProfile(data) {
+  const cards=[
+    {l:'Gyvenimo kelio skaičius',v:data.ln||'—'},
+    {l:'Asmeninis 2026 skaičius',v:data.py||'—'},
+    {l:'Dominuojantis elementas',v:data.el||'—'},
+    {l:'MBTI (iš chartos)',v:data.mbti||'Nustatoma...'},
+    {l:'Prisirišimo stilius',v:data.attach||'Nustatoma...'},
+    {l:'Pinigų archetiapas',v:'Nustatoma...'},
+  ];
+  document.getElementById('profile-cards').innerHTML=cards.map(c=>`<div class="profile-card"><div class="p-label">${c.l}</div><div class="p-value">${c.v}</div></div>`).join('');
+  const tags=[data.hd,data.focus].filter(Boolean);
+  document.getElementById('profile-tags').innerHTML=tags.map(t=>`<span class="tag tag-purple">${t}</span>`).join('');
+  document.getElementById('gen-profile').classList.remove('hidden');
+}
+
+async function callAPI(system, user, maxT=4000) {
+  const r = await fetch(API, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:maxT,system,messages:[{role:'user',content:user}]})
+  });
+  const d = await r.json();
+  if(d.error) throw new Error(d.error.message);
+  return d.content?.map(b=>b.text||'').join('')||'Klaida.';
+}
+
+async function runGenerate() {
+  const name=document.getElementById('g-name').value.trim();
+  const dob=document.getElementById('g-dob').value.trim();
+  const time=document.getElementById('g-time').value.trim();
+  const place=document.getElementById('g-place').value.trim();
+  const chart=document.getElementById('g-chart').value.trim();
+  const status=document.getElementById('g-status').value;
+  const kids=document.getElementById('g-kids').value;
+  const field=document.getElementById('g-field').value;
+  const focus=document.getElementById('g-focus').value.trim();
+  const mbti=document.getElementById('g-mbti').value.trim();
+  const hd=document.getElementById('g-hd').value;
+  const attach=document.getElementById('g-attach').value;
+  const numIn=document.getElementById('g-num').value.trim();
+  const depth=document.getElementById('g-depth').value;
+  const tone=document.getElementById('g-tone').value;
+
+  if(!name||!dob||!chart){alert('Prašome užpildyti vardą, gimimo datą ir chartos duomenis.');return;}
+
+  const btn=document.getElementById('genBtn');
+  btn.disabled=true;btn.textContent='Generuojama...';
+  document.getElementById('gen-steps').classList.remove('hidden');
+  document.getElementById('gen-result').classList.add('hidden');
+  document.getElementById('gen-check-wrap').classList.add('hidden');
+
+  const ln=numIn||calcNum(dob);
+  const py=calcPY(dob);
+  const el=detectEl(chart);
+
+  setStep(1);
+  buildProfile({ln,py,el,mbti,attach,hd,focus});
+  setStep(2);
+
+  const dw=depth==='standard'?'2000–2500':depth==='deep'?'2500–3500':'3500–4500';
+  const td=tone==='warm'?'šiltas, empatiškas, palaikantis':tone==='direct'?'tiesioginis, praktiškas, konkretus':'dvasinis, poetiškas, giliai metaforiškas';
+
+  const sys=`Tu esi "Human Potential Blueprint" v2.0 ekspertas, dirbantis su Agneta Kripaitė – Lietuvos finansų konsultante ir gyvenimo tyrinėtoja. Sistema sujungia astrologiją, psichologiją (MBTI, prisirišimo teorija), numerologiją, finansų psichologiją ir Akashic dimensiją.
+
+TONAS: ${td}
+ILGIS: ${dw} žodžių
+KALBA: Lietuvių
+
+ABSOLIUČIOS TAISYKLĖS:
+- Tik pastraipos – jokių sąrašų ar bullet pointų
+- Kiekvieną skyrių pradėk kliento vardu
+- Kiekviename skyriuje minėk konkrečius chartos faktus
+- Analizė turi skambėti: „tai apie MANE, ne apie kitus"
+- Kiekvienas skyrius – bent 4 pastraipos
+- Jokių šabloniškų frazių
+
+PRIVALOMI SKYRIAI:
+
+🌟 ĮVADAS – „Tavo kosminis portretas" (2-3 pastraipos su wow efektu)
+
+🧬 PSICHOLOGINIS PROFILIS
+- MBTI tipas pagal chartą su paaiškinimu
+- Dominuojantis elementas ir modalybė
+- Prisirišimo stilius (attachment style) ir jo įtaka
+- Stellium aptikimas jei yra
+- Numerologijos gyvenimo kelio skaičiaus interpretacija
+- Asmeninio 2026 metų skaičiaus reikšmė
+
+🧠 I. ASMENYBĖ IR TAPATYBĖ (4-5 pastraipos)
+
+💰 II. FINANSAI IR KARJERA
+- Finansinis DNR
+- Pinigų archetiapas (Saugotojas / Rizikuotojas / Davėjas / Kūrėjas / Lyderis / Magas) – nustatyk ir giliai paaiškink
+- Pinigų žaizda pagal Saturną, Plutoną, Chironą
+- Natūralus uždarbio kelias ir karjera
+
+❤️ III. SANTYKIAI IR MEILĖ (4-5 pastraipos)
+
+💑 TOBULO PARTNERIO PROFILIS
+- Idealaus partnerio astrologinis aprašas
+- Psichologinis tipas ir charakteris
+- Ženklai kurių VENGTI
+- Kaip atpažinti „savąjį"
+
+🎯 IV. GYVENIMO MISIJA IR POTENCIALAS (4 pastraipos)
+
+🔮 V. AKASHIC / DVASINĖ DIMENSIJA (3-4 pastraipos)
+
+🌙 VI. TIMING – GYVENIMO CIKLAI (3-4 pastraipos)
+
+💎 VII. PAPILDOMI ĮŽVALGOS
+
+✨ IŠVADA – „Tavo žinia sau" (galingas, emociškai stiprus užbaigimas)`;
+
+  const usr=`Kliento duomenys:
+Vardas: ${name}
+Gimimo data: ${dob}
+Laikas: ${time||'nežinomas'}
+Vieta: ${place||'nenurodyta'}
+Šeimyninė padėtis: ${status||'nenurodyta'}
+Vaikai: ${kids||'nenurodyta'}
+Profesija: ${field||'nenurodyta'}
+Fokusas: ${focus||'nenurodyta'}
+MBTI: ${mbti||'nustatyk pagal chartą'}
+Human Design: ${hd||'nustatyk pagal chartą'}
+Prisirišimo stilius: ${attach||'nustatyk pagal chartą'}
+Gyvenimo kelio skaičius: ${ln||'apskaičiuok'}
+Asmeninis 2026 skaičius: ${py||'apskaičiuok'}
+Elementas: ${el||'nustatyk iš chartos'}
+
+CHARTOS DUOMENYS:
+${chart}
+
+Atlik pilną Human Potential Blueprint v2.0 analizę.`;
+
+  setStep(3);
+  document.getElementById('gen-result').classList.remove('hidden');
+  const box=document.getElementById('gen-box');
+  box.innerHTML='<div class="loading-msg">Generuojama giluminė analizė... ⏳<br>Tai gali užtrukti 1–2 minutes.</div>';
+
+  try {
+    const maxT=depth==='standard'?3500:depth==='deep'?4500:5500;
+    const text=await callAPI(sys,usr,maxT);
+    box.textContent=text;
+    document.getElementById('r-original').value=text;
+    document.getElementById('r-name').value=name.split(' ')[0];
+    setStep(4);
+    runQuality(text,name,'gen-check-inner','gen-check-wrap',2000);
+  } catch(e){
+    box.innerHTML=`<div class="loading-msg" style="color:var(--coral)">Klaida: ${e.message}</div>`;
+  }
+  btn.disabled=false;btn.textContent='Generuoti pilną analizę →';
+}
+
+async function runRegen() {
+  if(!selSec){alert('Pasirink kurį skyrių regeneruoti.');return;}
+  const orig=document.getElementById('r-original').value.trim();
+  const name=document.getElementById('r-name').value.trim();
+  const extra=document.getElementById('r-extra').value.trim();
+  if(!orig){alert('Prašome įklijuoti originalią analizę arba chartos duomenis.');return;}
+
+  const btn=document.getElementById('regenBtn');
+  btn.disabled=true;btn.textContent='Regeneruojama...';
+  document.getElementById('regen-result').classList.remove('hidden');
+  const box=document.getElementById('regen-box');
+  box.innerHTML='<div class="loading-msg">Regeneruojamas skyrius...</div>';
+
+  const sys=`Tu esi Human Potential Blueprint analizės ekspertas. Rašyk lietuviškai, ${extra?extra+', ':''}šiltu ir giliu tonu, tik pastraipomis (ne sąrašais), bent 4–6 pastraipos. Minėk konkrečius chartos faktus. Vardink klientą vardu.`;
+  const usr=`Kliento vardas: ${name||'nenurodyta'}\n\nOriginalūs duomenys:\n${orig}\n\nParašyk TIKTAI šį skyrių giliai ir personalizuotai:\n${selSec}`;
+
+  try {
+    const text=await callAPI(sys,usr,2000);
+    box.textContent=text;
+  } catch(e){box.innerHTML=`<div class="loading-msg" style="color:var(--coral)">Klaida: ${e.message}</div>`;}
+  btn.disabled=false;btn.textContent='Regeneruoti skyrių →';
+}
+
+async function runPartner() {
+  const name=document.getElementById('p-name').value.trim();
+  const chart=document.getElementById('p-chart').value.trim();
+  const gender=document.getElementById('p-gender').value;
+  const ctx=document.getElementById('p-context').value.trim();
+  if(!chart){alert('Prašome įklijuoti chartos duomenis.');return;}
+
+  const btn=document.getElementById('partnerBtn');
+  btn.disabled=true;btn.textContent='Generuojama...';
+  document.getElementById('partner-result').classList.remove('hidden');
+  const box=document.getElementById('partner-box');
+  box.innerHTML='<div class="loading-msg">Analizuojamas partnerio profilis...</div>';
+
+  const sys=`Tu esi santykių astrologijos ir psichologijos ekspertas. Rašyk lietuviškai, šiltu ir konkrečiu tonu. Tik pastraipomis. Naudok chartos faktus.`;
+  const usr=`Kliento vardas: ${name||'klientė'}
+Ieško: ${gender||'nenurodyta'}
+Kontekstas: ${ctx||'nenurodytas'}
+
+CHARTOS DUOMENYS:
+${chart}
+
+Parašyk išsamų TOBULO PARTNERIO PROFILĮ su skyriais:
+1. Idealaus partnerio astrologinis portretas (3 pastraipos)
+2. Psichologinis tipas ir charakteris (3 pastraipos)
+3. Santykių dinamika ir suderinamumas (3 pastraipos)
+4. Zodiako ženklai – suderinami ir kurių vengti (2 pastraipos)
+5. Kaip atpažinti „savąjį" – praktiniai ženklai (2 pastraipos)
+6. Žinutė sau (1 galinga pastraipa)`;
+
+  try {
+    const text=await callAPI(sys,usr,2500);
+    box.textContent=text;
+  } catch(e){box.innerHTML=`<div class="loading-msg" style="color:var(--coral)">Klaida: ${e.message}</div>`;}
+  btn.disabled=false;btn.textContent='Generuoti partnerio profilį →';
+}
+
+function runCheck() {
+  const text=document.getElementById('c-text').value.trim();
+  const name=document.getElementById('c-name').value.trim();
+  const min=parseInt(document.getElementById('c-target').value);
+  if(!text){alert('Prašome įklijuoti analizės tekstą.');return;}
+  document.getElementById('check-result').classList.remove('hidden');
+  runQuality(text,name,'check-inner',null,min);
+}
+
+function runQuality(text,name,cid,pid,minW=2000){
+  if(pid) document.getElementById(pid).classList.remove('hidden');
+  const wc=text.split(/\s+/).filter(w=>w.length>0).length;
+  const pc=text.split(/\n\n+/).filter(p=>p.trim().length>50).length;
+  const nc=name?(text.split(name).length-1):0;
+  const secs=['ASMENYBĖ','FINANSAI','SANTYKIAI','GYVENIMO MISIJA','AKASHIC','TIMING','PAPILDOMI','IŠVADA','PSICHOLOGINIS PROFILIS'];
+  const sf=secs.filter(s=>text.toUpperCase().includes(s)).length;
+  const pf=text.toUpperCase().includes('PARTNERIO')||text.toUpperCase().includes('PARTNERIS');
+  const mf=/Saugotojas|Rizikuotojas|Davėjas|Kūrėjas|Lyderis|Magas/i.test(text);
+  const bl=(text.match(/^[\-\*•]/gm)||[]).length;
+  const hc=/namai|planeta|Saulė|Mėnulis|Merkurijus|Venera|Marsas|Jupiteris|Saturnas|mazgas|aspekt/i.test(text);
+  const hn=/gyvenimo kelio|asmeninis.*skaičius/i.test(text);
+  const hm=/MBTI|INFJ|INFP|ENFJ|INTJ|ENTJ|ISFJ|ESFJ/i.test(text);
+  const ha=/prisirišimo|Secure|Anxious|Avoidant/i.test(text);
+  const lt=/ir |su |bei |taip |kaip /i.test(text);
+
+  const checks=[
+    {l:`Žodžių skaičius (${minW}+)`,p:wc>=minW,w:wc>=(minW*0.85),d:`${wc} žodžių`},
+    {l:'Skyrių struktūra (7+/9)',p:sf>=7,w:sf>=5,d:`Rasta ${sf}/9 skyrių`},
+    {l:'Tobulo partnerio profilis',p:pf,w:false,d:pf?'Skyrius rastas':'Nerastas — svarbus V2.0 elementas'},
+    {l:'Pinigų archetiapas',p:mf,w:false,d:mf?'Archetiapas identifikuotas':'Nerasta (Saugotojas/Davėjas/kt.)'},
+    {l:'MBTI tipo analizė',p:hm,w:false,d:hm?'MBTI rastas':'MBTI neminimas'},
+    {l:'Prisirišimo stilius',p:ha,w:false,d:ha?'Aptartas':'Neminimas'},
+    {l:'Numerologijos įžvalgos',p:hn,w:false,d:hn?'Integruota':'Neminima'},
+    {l:'Chartos faktai',p:hc,w:false,d:hc?'Minimi':'Trūksta chartos nuorodų'},
+    {l:'Pastraipos (ne sąrašai)',p:bl<=3,w:bl<=8,d:bl===0?'Puiku – sąrašų nerasta':`${bl} sąrašo eilučių`},
+    {l:'Kliento vardas (7+ kartų)',p:name?nc>=7:null,w:name?nc>=4:null,d:name?`Vardas ${nc}k.`:'Vardas nenurodytas'},
+    {l:'Lietuvių kalba',p:lt,w:false,d:lt?'Tekstas lietuviškai':'Gali būti ne lietuvių k.'},
+  ];
+
+  const passed=checks.filter(c=>c.p===true).length;
+  const total=checks.filter(c=>c.p!==null).length;
+  const score=Math.round((passed/total)*100);
+  const fc=score>=85?'var(--teal)':score>=65?'var(--gold)':'var(--coral)';
+
+  let html=`<div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+    <div class="score-big">${score}%</div>
+    <div style="flex:1">
+      <div class="prog"><div class="prog-fill" style="width:${score}%;background:${fc}"></div></div>
+      <div style="font-size:11px;color:var(--text2);margin-top:4px">${passed} iš ${total} kriterijų · V2.0 standartas</div>
+    </div>
+  </div>`;
+
+  checks.forEach(c=>{
+    let cls='warn',dc='warn';
+    if(c.p===true){cls='pass';dc='pass';}
+    else if(c.p===false&&!c.w){cls='fail';dc='fail';}
+    else if(c.p===null){cls='';dc='warn';}
+    html+=`<div class="check-item ${cls}"><div class="c-dot ${dc}"></div><div><div class="c-label">${c.l}</div><div class="c-detail">${c.d}</div></div></div>`;
+  });
+
+  if(score>=85) html+=`<div class="info-box info-teal" style="margin-top:12px">Analizė atitinka Human Potential Blueprint v2.0 kokybės standartus.</div>`;
+  else html+=`<div class="info-box info-coral" style="margin-top:12px">Rekomenduojama regeneruoti pažymėtus skyrius naudojant „Regeneruoti skyrių" funkciją.</div>`;
+
+  document.getElementById(cid).innerHTML=html;
+}
+
+function copyText(id) {
+  const t=document.getElementById(id).textContent;
+  navigator.clipboard.writeText(t).then(()=>{
+    const prev=event.target.textContent;
+    event.target.textContent='Nukopijuota!';
+    setTimeout(()=>event.target.textContent=prev,2000);
+  });
+}
+
+function saveToRegen() {
+  const text=document.getElementById('gen-box').textContent;
+  const name=document.getElementById('g-name').value;
+  document.getElementById('r-original').value=text;
+  document.getElementById('r-name').value=name.split(' ')[0];
+  showTab('regen',document.querySelectorAll('.tab')[1]);
+}
+</script>
+</body>
+</html>
